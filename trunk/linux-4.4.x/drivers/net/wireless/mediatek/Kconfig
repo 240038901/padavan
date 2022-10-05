@@ -111,23 +111,19 @@ config RT_THIRD_IF_RF_OFFSET
 	depends on !THIRD_IF_NONE
 	default 0x10000
 
-if (RT_FIRST_IF_MT7602E)
 config RT_FIRST_CARD_EEPROM
 	string
 	depends on !RT_FIRST_IF_NONE
 	default "prom" if RT_FIRST_IF_EEPROM_PROM
 	default "efuse" if RT_FIRST_IF_EEPROM_EFUSE
 	default "flash" if RT_FIRST_IF_EEPROM_FLASH
-endif
-
-if (RT_SECOND_IF_MT7612E)	
+	
 config RT_SECOND_CARD_EEPROM
 	string
 	depends on !RT_SECOND_IF_NONE
 	default "prom" if RT_SECOND_IF_EEPROM_PROM
 	default "efuse" if RT_SECOND_IF_EEPROM_EFUSE
 	default "flash" if RT_SECOND_IF_EEPROM_FLASH
-endif
 
 if (FIRST_IF_MT7603E)
 menu "MediaTek MT7603 PCIe Wireless driver"
