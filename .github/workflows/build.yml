@@ -32,13 +32,9 @@ jobs:
         with:
           name: images
           path: trunk/images/*.trx
-      - uses: rickstaa/action-create-tag@v1
-        with:
-          tag: ${{ env.TAG_ANME }}
-          force_push_tag: true
       - uses: ncipollo/release-action@v1
         with:
           commit: ${{ github.sha }}
-          tag: ${{ env.TAG_ANME }}
+          tag: Padavan-4.4
           artifacts: trunk/images/*.trx
           allowUpdates: true
