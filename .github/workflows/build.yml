@@ -15,7 +15,7 @@ jobs:
     runs-on: ubuntu-22.04
     strategy:
       matrix:
-        target: [RE-CP-02]
+        target: [QM-B1]
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-go@v3
@@ -42,4 +42,4 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           tag_name: Padavan-4.4
-          files: trunk/images/*
+          files: trunk/images/*.trx
