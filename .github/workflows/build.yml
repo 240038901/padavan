@@ -1,11 +1,14 @@
 name: build
 
 on: 
+  release:
+    types: [published]
   push:
-    branches:
-    - "*"
-  workflow_dispatch:
-
+    tags:
+    - 'v*'
+  watch:
+    types: [started]
+    
 jobs:
   build:
     name: build
@@ -32,9 +35,13 @@ jobs:
         with:
           name: images
           path: trunk/images/*.trx
-      - uses: ncipollo/release-action@v1
+          
+      - name: Upload firmware to release
+        uses: softprops/action-gh-release@v1
+        if: steps.tag.outputs.status == 'success' && !cancelled()
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          commit: ${{ github.sha }}
-          tag: Padavan-4.4
-          artifacts: trunk/images/*.trx
-          allowUpdates: true
+          tag_name: Padavan-4.4
+          body_path: release.txt
+          files: trunk/images/*
